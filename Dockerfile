@@ -8,8 +8,8 @@ ENV PYTHONUNBUFFERED 1
 
 # Install dependencies
 RUN apt-get update
-# RUN apt-get install -y libssl1.0.2 libasound2
-RUN apt-get install libssl1.0.2 libasound2
+# # RUN apt-get install -y libssl1.0.2 libasound2
+# RUN apt-get install libssl1.0.2 libasound2
 
 # Set work directory
 WORKDIR /app
