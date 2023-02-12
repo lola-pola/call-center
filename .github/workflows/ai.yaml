@@ -28,7 +28,7 @@ jobs:
                 subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
                 tenant-id: ${{ secrets.AZURE_TENANT_ID }}
             - name: Build and push image to ACR
-              run: az acr build --image ${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.ACR_RESOURCE_GROUP }} -f ./Dockerfile ./
+              run: az acr build --image ${{ env.CONTAINER_NAME }}:1 --registry ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.ACR_RESOURCE_GROUP }} -f ./Dockerfile ./
     deploy:
         permissions:
             actions: read
@@ -57,4 +57,4 @@ jobs:
                 resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
                 use-kubelogin: "true"
             - name: Deploy application
-              run: helm upgrade --wait -i -f ${{ env.CHART_OVERRIDE_PATH }} --set ${{ env.CHART_OVERRIDES }} automated-deployment ${{ env.CHART_PATH }}
+              run: helm upgrade -i --set ${{ env.CHART_OVERRIDES }} ai-call-center ${{ env.CHART_PATH }} --set keyazureai=${{ secrets.KEY_AZURE_AI }} --set keyazureml=${{ secrets.KEY_AZURE_ML }} 
