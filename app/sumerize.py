@@ -1,4 +1,5 @@
 import openai
+import os
 
 # Set up API key
 openai.api_key = os.environ['KEY_AZURE_AI']
