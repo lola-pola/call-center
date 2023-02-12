@@ -1,3 +1,4 @@
 streamlit
 audio-recorder-streamlit
 azure-cognitiveservices-speech
+openai
