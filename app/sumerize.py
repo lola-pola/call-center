@@ -2,7 +2,7 @@ import openai
 import os
 
 # Set up API key
-openai.api_key = os.environ['KEY_AZURE_AI']
+openai.api_key=os.environ['KEY_AZURE_AI']
 
 def find_keywords(text):
     response = openai.Completion.create(
