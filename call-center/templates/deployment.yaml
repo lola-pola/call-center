@@ -40,7 +40,6 @@ spec:
           volumeMounts:
             - mountPath: "/app/uploaded/"
               name: {{ include "call-center.fullname" . }}-uploaded
-          volumeMounts:
             - mountPath: "/app/userdata/"
               name: {{ include "call-center.fullname" . }}-userdata
           env:
