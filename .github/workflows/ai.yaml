@@ -57,4 +57,4 @@ jobs:
                 resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
                 use-kubelogin: "true"
             - name: Deploy application
-              run: helm upgrade -i --set ${{ env.CHART_OVERRIDES }} ai-call-center ${{ env.CHART_PATH }} --set keyazureai=${{ secrets.KEY_AZURE_AI }} --set keyazureml=${{ secrets.KEY_AZURE_ML }} 
+              run: helm upgrade -i --set ${{ env.CHART_OVERRIDES }} aicall ${{ env.CHART_PATH }} --set keyazureai=${{ secrets.KEY_AZURE_AI }} --set keyazureml=${{ secrets.KEY_AZURE_ML }} 
