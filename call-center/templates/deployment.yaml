@@ -27,6 +27,13 @@ spec:
       serviceAccountName: {{ include "call-center.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - name: {{ include "call-center.fullname" . }}-userdata
+          persistentVolumeClaim:
+             claimName: {{ include "call-center.fullname" . }}-userdata 
+        - name: {{ include "call-center.fullname" . }}-uploaded
+          persistentVolumeClaim:
+             claimName: {{ include "call-center.fullname" . }}-uploaded        
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
