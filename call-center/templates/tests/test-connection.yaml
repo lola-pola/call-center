@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "call-center.fullname" . }}-test-connection"
+  labels:
+    {{- include "call-center.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "call-center.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never
