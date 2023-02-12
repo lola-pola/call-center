@@ -38,8 +38,11 @@ spec:
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           volumeMounts:
-            - mountPath: "/usr/share/nginx/html"
-              name: {{ include "call-center.fullname" . }}
+            - mountPath: "/app/uploaded/"
+              name: {{ include "call-center.fullname" . }}-uploaded
+          volumeMounts:
+            - mountPath: "/app/userdata/"
+              name: {{ include "call-center.fullname" . }}-userdata
           env:
           - name: KEY_AZURE_ML
             value: {{ .Values.keyazureml }}
