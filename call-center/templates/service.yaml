@@ -4,6 +4,8 @@ metadata:
   name: {{ include "call-center.fullname" . }}
   labels:
     {{- include "call-center.labels" . | nindent 4 }}
+  annotations:
+    service.beta.kubernetes.io/azure-dns-label-name: {{ .Values.service.dnsName }}
 spec:
   type: {{ .Values.service.type }}
   ports:
