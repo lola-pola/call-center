@@ -15,12 +15,7 @@ def find_keywords(text):
         prompt="Extract keywords from: " + text,
         max_tokens=1024,
         n=1,
-        stop=None,
         temperature=0.5,
-        top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0,
-        best_of=1,
         stop=None
 
     )
