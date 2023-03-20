@@ -43,6 +43,9 @@ service:
 
 keyazureai: 'TBD'
 keyazureml: 'TBD'
+urlazureai: 'TBD'
+
+
 
 ingress:
   enabled: false

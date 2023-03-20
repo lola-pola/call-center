@@ -1,8 +1,13 @@
 import openai
 import os
 
-# Set up API key
-openai.api_key=os.environ['KEY_AZURE_AI']
+openai.api_type = "azure"
+openai.api_base = os.getenv("URL_AZURE_AI_DEVINCHI")
+openai.api_version = "2022-12-01"
+openai.api_key = os.getenv("KEY_AZURE_AI_DEVINCHI")
+
+
+
 
 def find_keywords(text):
     response = openai.Completion.create(
@@ -12,6 +17,12 @@ def find_keywords(text):
         n=1,
         stop=None,
         temperature=0.5,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0,
+        best_of=1,
+        stop=None
+
     )
 
     keywords = response.choices[0].text
