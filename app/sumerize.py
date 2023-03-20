@@ -11,7 +11,7 @@ openai.api_key = os.getenv("KEY_AZURE_AI_DEVINCHI")
 
 def find_keywords(text):
     response = openai.Completion.create(
-        engine="text-davinci-002",
+        engine="call-center",
         prompt="Extract keywords from: " + text,
         max_tokens=1024,
         n=1,
