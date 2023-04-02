@@ -9,6 +9,8 @@ from os.path import isfile, join
 st.set_page_config(layout="wide")
 st.title("Call Center")
 
+
+st.write("OPENAI RULEZ")
 audio_bytes = audio_recorder(
     text="",
     recording_color="#e8b62c",
