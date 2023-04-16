@@ -2,7 +2,7 @@ import openai
 import os
 
 openai.api_type = "azure"
-openai.api_base = os.getenv("URL_AZURE_AI_DEVINCHI")
+openai.api_base = "https://elhays-wix.openai.azure.com/"
 openai.api_version = "2022-12-01"
 openai.api_key = os.getenv("KEY_AZURE_AI_DEVINCHI")
 
