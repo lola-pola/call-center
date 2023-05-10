@@ -10,8 +10,8 @@ env:
     CHART_OVERRIDE_PATH: ./call-center/values.yaml
     CHART_OVERRIDES: image.repository=databasecni.azurecr.io/call-center,image.tag=${{ github.sha }}
     CHART_PATH: ./call-center
-    CLUSTER_NAME: database-cni
-    CLUSTER_RESOURCE_GROUP: elhays
+    CLUSTER_NAME: aks-production
+    CLUSTER_RESOURCE_GROUP: aks-production
     CONTAINER_NAME: call-center
 jobs:
     buildImage:
@@ -57,4 +57,4 @@ jobs:
                 resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
                 use-kubelogin: "true"
             - name: Deploy application
-              run: helm upgrade -i -f ${{ env.CHART_OVERRIDE_PATH }} --set keyazureai=${{ secrets.KEY_AZURE_AI_DEVINCHI }} --set urlazureai=${{ secrets.URL_AZURE_AI_DEVINCHI }} --set keyazureml=${{ secrets.KEY_AZURE_ML }} --set ${{ env.CHART_OVERRIDES }} call-center ${{ env.CHART_PATH }}
+              run: helm upgrade --wait -i -f ${{ env.CHART_OVERRIDE_PATH }} --set ${{ env.CHART_OVERRIDES }}  call-center ${{ env.CHART_PATH }}
