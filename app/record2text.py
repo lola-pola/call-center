@@ -2,6 +2,7 @@ import azure.cognitiveservices.speech as speechsdk
 import os
 speech_key, service_region = os.environ['KEY_AZURE_ML'] , "westeurope"
 
+
 def from_file(data_file):
     speech_config = speechsdk.SpeechConfig(subscription=speech_key,
                                            region=service_region ,
