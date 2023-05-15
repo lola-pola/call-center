@@ -1,11 +1,11 @@
 import azure.cognitiveservices.speech as speechsdk
 import os
-speech_key, service_region = os.environ['KEY_AZURE_ML'] , "westeurope"
+speech_key, endpoint_speech  = os.environ['KEY_AZURE_ML'] , "https://westeurope.api.cognitive.microsoft.com/sts/v1.0/issuetoken"
 
 
 def from_file(data_file):
     speech_config = speechsdk.SpeechConfig(subscription=speech_key,
-                                           region=service_region ,
+                                           endpoint= endpoint_speech,
                                            speech_recognition_language="en-US"
                                            )
     audio_input = speechsdk.AudioConfig(filename=data_file)
@@ -29,4 +29,3 @@ def from_file(data_file):
             print("Error details: {}".format(cancellation_details.error_details))
     
     return(result.text)
-
