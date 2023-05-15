@@ -7,10 +7,6 @@ openai.api_version = "2022-12-01"
 openai.api_key = os.getenv("KEY_AZURE_AI_DEVINCHI")
 
 
-
-
-
-
 def find_keywords(text):
     response = openai.Completion.create(
         engine="call-center",
