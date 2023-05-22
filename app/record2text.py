@@ -1,8 +1,6 @@
 import azure.cognitiveservices.speech as speechsdk
 import os
-speech_key, endpoint_speech  = os.environ['KEY_AZURE_ML'] , "https://westeurope.api.cognitive.microsoft.com/sts/v1.0/issuetoken"
-
-
+speech_key, endpoint_speech  = os.environ['KEY_AZURE_ML'] , "wss://speechspeech.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?language=en-US"
 def from_file(data_file):
     speech_config = speechsdk.SpeechConfig(subscription=speech_key,
                                            endpoint= endpoint_speech,
