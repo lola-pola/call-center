@@ -21,3 +21,17 @@ def find_keywords(text):
     keywords = response.choices[0].text
     return keywords.strip().split("\n")
 
+
+def find_something(text,something):
+    response = openai.Completion.create(
+        engine="call-center",
+        prompt=something + text,
+        max_tokens=1024,
+        n=1,
+        temperature=0.5,
+        stop=None
+
+    )
+
+    keywords = response.choices[0].text
+    return keywords.strip().split("\n")

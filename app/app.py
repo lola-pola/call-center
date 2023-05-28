@@ -52,13 +52,16 @@ elif selection == "from file":
             fs.write(audio_bytes2)
         if data_file_location:
             st.audio(audio_bytes2, format="audio/wav", start_time=0)
-            if st.button("change to text"):
-               st.write(from_file(data_file_location))
+            # if st.button("change to text"):
+            #    st.write(from_file(data_file_location))
             if st.button("finding key words"):
                st.write("finding key words ...")
                st.write(from_file(data_file_location))
                st.write(find_keywords(from_file(data_file_location)))
-
+            if st.checkbox('find spesific something'):
+               something = st.text_input('enter what you would loke to do')
+               if something:
+                st.write(find_something(from_file(data_file_location),something))
 
 elif selection == "list existing":
     st.snow()
