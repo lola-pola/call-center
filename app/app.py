@@ -1,7 +1,7 @@
 import streamlit as st
 from record2text import from_file 
 from audio_recorder_streamlit import audio_recorder
-from sumerize import find_keywords
+from sumerize import find_keywords , find_something
 from datetime import datetime
 from os import listdir
 from os.path import isfile, join
