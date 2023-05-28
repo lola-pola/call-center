@@ -60,8 +60,9 @@ elif selection == "from file":
                st.write(find_keywords(from_file(data_file_location)))
             if st.checkbox('find spesific something'):
                something = st.text_input('enter what you would loke to do')
+               lola = from_file(data_file_location)
                if something:
-                st.write(find_something(from_file(data_file_location),something))
+                st.write(find_something(lola,something))
 
 elif selection == "list existing":
     st.snow()
