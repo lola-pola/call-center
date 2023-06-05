@@ -25,7 +25,7 @@ audio_bytes = audio_recorder(
 
 runner = False
 with st.sidebar:
-    custom =  st.checkbox('Submit',False)
+    custom =  st.checkbox('Advance Configuration',False)
     if custom:
         key = st.text_input('API Key', type='password')
         base = st.text_input('API Base', value="https://aks-production.openai.azure.com/" )
