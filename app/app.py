@@ -43,14 +43,17 @@ with st.sidebar:
         if runner:
             st.success('This is a success message!', icon="✅")
     else:
-        model_name = "call-center"
-        openai.api_type = "azure"
-        openai.api_base = "https://aks-production.openai.azure.com/" 
-        openai.api_version = "2022-12-01"
-        openai.api_key = os.getenv("KEY_AZURE_AI_DEVINCHI")
-        speech_key = os.environ['KEY_AZURE_ML']
-        endpoint_speech  =  "wss://speechspeech.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?language=en-US"
-        lang = "en-US"
+        try:
+            model_name = "call-center"
+            openai.api_type = "azure"
+            openai.api_base = "https://aks-production.openai.azure.com/" 
+            openai.api_version = "2022-12-01"
+            openai.api_key = os.getenv("KEY_AZURE_AI_DEVINCHI")
+            speech_key = os.environ['KEY_AZURE_ML']
+            endpoint_speech  =  "wss://speechspeech.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?language=en-US"
+            lang = "en-US"
+        except Exception as Error:
+            pass
         runner = True
         st.success('This is a success message!', icon="✅")
 
