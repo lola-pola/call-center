@@ -66,11 +66,11 @@ if runner:
 
            st.audio(audio_bytes, format="audio/wav", start_time=0)  
            if st.button("change to text"):
-               st.write(from_file(data_file,lang))
+               st.write(from_file(data_file,lang,endpoint_speech))
            if  st.button("finding key words"):
                st.write("finding key words ...")
-               st.write(from_file(data_file,lang))
-               st.write(find_keywords(from_file(data_file,lang)),model_name)
+               st.write(from_file(data_file,lang,endpoint_speech))
+               st.write(find_keywords(from_file(data_file,lang,endpoint_speech)),model_name)
 
     elif selection == "from file":
         st.snow()
@@ -89,11 +89,11 @@ if runner:
                 #    st.write(from_file(data_file_location))
                 if st.button("finding key words"):
                    st.write("finding key words ...")
-                   st.write(from_file(data_file_location,lang))
-                   st.write(find_keywords(from_file(data_file_location,lang)),model_name)
+                   st.write(from_file(data_file_location,lang,endpoint_speech))
+                   st.write(find_keywords(from_file(data_file_location,lang,endpoint_speech)),model_name)
                 if st.checkbox('find spesific something'):
                    something = st.text_input('enter what you would loke to do')
-                   lola = from_file(data_file_location,lang)
+                   lola = from_file(data_file_location,lang,endpoint_speech)
                    if something:
                     st.write(find_something(lola,something,model_name))
 
@@ -108,9 +108,9 @@ if runner:
                 audio_bytes = audio_file.read()
                 st.audio(audio_bytes, format="audio/wav", start_time=0)
                 if st.button("change to text"):
-                   st.write(from_file(full_path,lang))
+                   st.write(from_file(full_path,lang,endpoint_speech))
                 if st.button("finding key words"):
                    st.write("finding key words ...")
-                   st.write(from_file(full_path,lang))
-                   st.write(find_keywords(from_file(full_path,lang)),model_name)
+                   st.write(from_file(full_path,lang,endpoint_speech))
+                   st.write(find_keywords(from_file(full_path,lang,endpoint_speech)),model_name)
 
