@@ -6,6 +6,7 @@ from datetime import datetime
 import streamlit as st
 from os import listdir
 import openai
+import os 
 
 
 st.set_page_config(layout="wide")
