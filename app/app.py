@@ -52,9 +52,11 @@ with st.sidebar:
             speech_key = os.environ['KEY_AZURE_ML']
             endpoint_speech  =  "wss://speechspeech.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?language=en-US"
             lang = "en-US"
+            runner = True
         except Exception as Error:
+            runner = False
             pass
-        runner = True
+        
         st.success('This is a success message!', icon="✅")
 
 if runner:
