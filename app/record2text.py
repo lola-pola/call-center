@@ -1,16 +1,15 @@
 import azure.cognitiveservices.speech as speechsdk
 import os
-speech_key, endpoint_speech  = os.environ['KEY_AZURE_ML'] , "wss://speechspeech.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?language=en-US"
 
-def from_file(data_file):
+def from_file(data_file,lang):
     speech_config = speechsdk.SpeechConfig(subscription=speech_key,
                                            endpoint= endpoint_speech,
-                                           speech_recognition_language="en-US"
+                                           speech_recognition_language=lang
                                            )
     audio_input = speechsdk.AudioConfig(filename=data_file)
     speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config,
                                                    audio_config=audio_input,
-                                                   language="en-US"
+                                                   language=lang
     )
 
     # result = speech_recognizer.recognize_once_async().get()

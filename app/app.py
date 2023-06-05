@@ -1,10 +1,12 @@
-import streamlit as st
-from record2text import from_file 
 from audio_recorder_streamlit import audio_recorder
 from sumerize import find_keywords , find_something
-from datetime import datetime
-from os import listdir
+from record2text import from_file 
 from os.path import isfile, join
+from datetime import datetime
+import streamlit as st
+from os import listdir
+import openai
+
 
 st.set_page_config(layout="wide")
 st.title("Call Center")
@@ -20,8 +22,40 @@ audio_bytes = audio_recorder(
     icon_size="6x",
 )
 
+runner = False
+with st.sidebar:
+    custom =  st.checkbox('Submit',False)
+    if custom:
+        key = st.text_input('API Key', type='password')
+        base = st.text_input('API Base', value="https://aks-production.openai.azure.com/" )
+        model_name = st.text_input('Model Name')
+        runner =  st.checkbox('Submit')
 
-selection = st.selectbox("How you want to start using call center :) ?", ["-- select ---", "from file", "from mic", "list existing"])
+        openai.api_type = "azure"
+        openai.api_base = base 
+        openai.api_version = "2022-12-01"
+        openai.api_key = key
+        lang = st.text_input('Model Name',"en-US")
+        endpoint_speech = st.text_input('Endpoint Speech',f"wss://speechspeech.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?language={lang}")
+
+
+        if runner:
+            st.success('This is a success message!', icon="✅")
+    else:
+        model_name = "call-center"
+        openai.api_type = "azure"
+        openai.api_base = "https://aks-production.openai.azure.com/" 
+        openai.api_version = "2022-12-01"
+        openai.api_key = os.getenv("KEY_AZURE_AI_DEVINCHI")
+        speech_key = os.environ['KEY_AZURE_ML']
+        endpoint_speech  =  "wss://speechspeech.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?language=en-US"
+        lang = "en-US"
+        runner = custom
+        st.success('This is a success message!', icon="✅")
+
+
+if runner:
+    selection = st.selectbox("How you want to start using call center :) ?", ["-- select ---", "from file", "from mic", "list existing"])
 
 if selection == "from mic":
     st.balloons()
@@ -33,11 +67,11 @@ if selection == "from mic":
             
        st.audio(audio_bytes, format="audio/wav", start_time=0)  
        if st.button("change to text"):
-           st.write(from_file(data_file))
+           st.write(from_file(data_file,lang))
        if  st.button("finding key words"):
            st.write("finding key words ...")
-           st.write(from_file(data_file))
-           st.write(find_keywords(from_file(data_file)))
+           st.write(from_file(data_file,lang))
+           st.write(find_keywords(from_file(data_file,lang)),model_name)
 
 elif selection == "from file":
     st.snow()
@@ -56,13 +90,13 @@ elif selection == "from file":
             #    st.write(from_file(data_file_location))
             if st.button("finding key words"):
                st.write("finding key words ...")
-               st.write(from_file(data_file_location))
-               st.write(find_keywords(from_file(data_file_location)))
+               st.write(from_file(data_file_location,lang))
+               st.write(find_keywords(from_file(data_file_location,lang)),model_name)
             if st.checkbox('find spesific something'):
                something = st.text_input('enter what you would loke to do')
-               lola = from_file(data_file_location)
+               lola = from_file(data_file_location,lang)
                if something:
-                st.write(find_something(lola,something))
+                st.write(find_something(lola,something,model_name))
 
 elif selection == "list existing":
     st.snow()
@@ -75,11 +109,11 @@ elif selection == "list existing":
             audio_bytes = audio_file.read()
             st.audio(audio_bytes, format="audio/wav", start_time=0)
             if st.button("change to text"):
-               st.write(from_file(full_path))
+               st.write(from_file(full_path,lang))
             if st.button("finding key words"):
                st.write("finding key words ...")
-               st.write(from_file(full_path))
-               st.write(find_keywords(from_file(full_path)))
+               st.write(from_file(full_path,lang))
+               st.write(find_keywords(from_file(full_path,lang)),model_name)
                 
             
 
