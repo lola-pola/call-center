@@ -29,15 +29,16 @@ with st.sidebar:
         key = st.text_input('API Key', type='password')
         base = st.text_input('API Base', value="https://aks-production.openai.azure.com/" )
         model_name = st.text_input('Model Name')
-        runner =  st.checkbox('Submit')
-
+        speech_key = st.text_input('Model Name')
         openai.api_type = "azure"
         openai.api_base = base 
         openai.api_version = "2022-12-01"
         openai.api_key = key
         lang = st.text_input('Model Name',"en-US")
         endpoint_speech = st.text_input('Endpoint Speech',f"wss://speechspeech.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?language={lang}")
+        
 
+        runner =  st.checkbox('Submit')
 
         if runner:
             st.success('This is a success message!', icon="✅")
@@ -66,11 +67,11 @@ if runner:
 
            st.audio(audio_bytes, format="audio/wav", start_time=0)  
            if st.button("change to text"):
-               st.write(from_file(data_file,lang,endpoint_speech))
+               st.write(from_file(data_file,lang,endpoint_speech,speech_key))
            if  st.button("finding key words"):
                st.write("finding key words ...")
-               st.write(from_file(data_file,lang,endpoint_speech))
-               st.write(find_keywords(from_file(data_file,lang,endpoint_speech)),model_name)
+               st.write(from_file(data_file,lang,endpoint_speech,speech_key))
+               st.write(find_keywords(from_file(data_file,lang,endpoint_speech,speech_key)),model_name)
 
     elif selection == "from file":
         st.snow()
@@ -89,11 +90,11 @@ if runner:
                 #    st.write(from_file(data_file_location))
                 if st.button("finding key words"):
                    st.write("finding key words ...")
-                   st.write(from_file(data_file_location,lang,endpoint_speech))
-                   st.write(find_keywords(from_file(data_file_location,lang,endpoint_speech)),model_name)
+                   st.write(from_file(data_file,lang,endpoint_speech,speech_key))
+                   st.write(find_keywords(from_file(data_file,lang,endpoint_speech,speech_key)),model_name)
                 if st.checkbox('find spesific something'):
                    something = st.text_input('enter what you would loke to do')
-                   lola = from_file(data_file_location,lang,endpoint_speech)
+                   lola = from_file(data_file,lang,endpoint_speech,speech_key)
                    if something:
                     st.write(find_something(lola,something,model_name))
 
@@ -108,9 +109,9 @@ if runner:
                 audio_bytes = audio_file.read()
                 st.audio(audio_bytes, format="audio/wav", start_time=0)
                 if st.button("change to text"):
-                   st.write(from_file(full_path,lang,endpoint_speech))
+                   st.write(from_file(data_file,lang,endpoint_speech,speech_key))
                 if st.button("finding key words"):
                    st.write("finding key words ...")
-                   st.write(from_file(full_path,lang,endpoint_speech))
-                   st.write(find_keywords(from_file(full_path,lang,endpoint_speech)),model_name)
+                   st.write(from_file(data_file,lang,endpoint_speech,speech_key))
+                   st.write(find_keywords(from_file(data_file,lang,endpoint_speech,speech_key)),model_name)
 
