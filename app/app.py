@@ -47,8 +47,8 @@ with st.sidebar:
         openai.api_type = "azure"
         openai.api_base = "https://aks-production.openai.azure.com/" 
         openai.api_version = "2022-12-01"
-        openai.api_key = os.getenv("KEY_AZURE_AI_DEVINCHI")
-        speech_key = os.environ['KEY_AZURE_ML']
+        openai.api_key = os.getenv("KEY_AZURE_AI_DEVINCHI", type='password')
+        speech_key = os.environ['KEY_AZURE_ML', type='password']
         endpoint_speech  =  "wss://speechspeech.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?language=en-US"
         lang = "en-US"
         runner = True
