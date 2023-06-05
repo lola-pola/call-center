@@ -29,12 +29,12 @@ with st.sidebar:
         key = st.text_input('API Key', type='password')
         base = st.text_input('API Base', value="https://aks-production.openai.azure.com/" )
         model_name = st.text_input('Model Name')
-        speech_key = st.text_input('Model Name')
+        speech_key = st.text_input('speech Key')
         openai.api_type = "azure"
         openai.api_base = base 
         openai.api_version = "2022-12-01"
         openai.api_key = key
-        lang = st.text_input('Model Name',"en-US")
+        lang = st.text_input('language',"en-US")
         endpoint_speech = st.text_input('Endpoint Speech',f"wss://speechspeech.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?language={lang}")
         
 
