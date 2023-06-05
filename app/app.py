@@ -58,7 +58,6 @@ if runner:
     selection = st.selectbox("How you want to start using call center :) ?", ["-- select ---", "from file", "from mic", "list existing"])
 
     if selection == "from mic":
-        st.balloons()
         data_file = f'userdata/call-center-{datetime.now().strftime("%Y%m%d-%H%M%S")}.wav'
         audio_bytes = audio_recorder(pause_threshold=30)
         if audio_bytes:
@@ -74,7 +73,6 @@ if runner:
                st.write(find_keywords(from_file(data_file,lang,endpoint_speech,speech_key)),model_name)
 
     elif selection == "from file":
-        st.snow()
         audio_bytes1 = st.file_uploader("Upload Files", type=["wav"],accept_multiple_files=False)
 
         data_file_location = f'uploaded/call-center-{datetime.now().strftime("%Y%m%d-%H%M%S")}.wav'
@@ -99,7 +97,6 @@ if runner:
                     st.write(find_something(lola,something,model_name))
 
     elif selection == "list existing":
-        st.snow()
         selection = st.selectbox("Select file", ['uploaded','userdata'])
         if selection:
             selected = st.selectbox("Select file", [f for f in listdir(selection) if isfile(join(selection, f))])
