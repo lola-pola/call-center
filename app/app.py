@@ -70,7 +70,7 @@ if runner:
            if  st.button("finding key words"):
                st.write("finding key words ...")
                st.write(from_file(data_file,lang,endpoint_speech,speech_key))
-               st.write(find_keywords(from_file(data_file,lang,endpoint_speech,speech_key)),model_name)
+               st.write(find_keywords(from_file(data_file,lang,endpoint_speech,speech_key),model_name))
 
     elif selection == "from file":
         audio_bytes1 = st.file_uploader("Upload Files", type=["wav"],accept_multiple_files=False)
@@ -89,7 +89,7 @@ if runner:
                 if st.button("finding key words"):
                    st.write("finding key words ...")
                    st.write(from_file(data_file_location,lang,endpoint_speech,speech_key))
-                   st.write(find_keywords(from_file(data_file_location,lang,endpoint_speech,speech_key)),model_name)
+                   st.write(find_keywords(from_file(data_file_location,lang,endpoint_speech,speech_key),model_name))
                 if st.checkbox('find spesific something'):
                    something = st.text_input('enter what you would loke to do')
                    lola = from_file(data_file_location,lang,endpoint_speech,speech_key)
@@ -110,5 +110,5 @@ if runner:
                 if st.button("finding key words"):
                    st.write("finding key words ...")
                    st.write(from_file(data_file,lang,endpoint_speech,speech_key))
-                   st.write(find_keywords(from_file(data_file,lang,endpoint_speech,speech_key)),model_name)
+                   st.write(find_keywords(from_file(data_file,lang,endpoint_speech,speech_key),model_name))
 
